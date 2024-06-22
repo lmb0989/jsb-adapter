@@ -428,7 +428,13 @@ const cacheManager = require('./jsb-cache-manager');
 
         let node = this.node;
         if (!node) return;
-        
+
+        let speed = cc.director.getSpeedByNode(this.node)
+        if (this._speed != speed) {
+            this._speed = speed;
+            nativeSkeleton.setSpeed(speed);
+        }
+
         if (!this.isAnimationCached() && (this.debugBones || this.debugSlots || this.debugMesh) && this._debugRenderer) {
             
             let graphics = this._debugRenderer;
